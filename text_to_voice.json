@@ -1,0 +1,215 @@
+[
+    {
+        "id": "2e1c91d8f5d01006",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e5f99d8a70053876",
+        "type": "telegram receiver",
+        "z": "2e1c91d8f5d01006",
+        "name": "",
+        "bot": "b48b41a9b16882e4",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "db5bcefc0e2db9c0",
+                "a6520e6f0fd624d6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a1e89d4d1e3190d5",
+        "type": "telegram sender",
+        "z": "2e1c91d8f5d01006",
+        "name": "",
+        "bot": "b48b41a9b16882e4",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 280,
+        "wires": [
+            [
+                "ee3fa3c6654fbe35"
+            ]
+        ]
+    },
+    {
+        "id": "db5bcefc0e2db9c0",
+        "type": "debug",
+        "z": "2e1c91d8f5d01006",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 220,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "0d0784e8153bbe5d",
+        "type": "debug",
+        "z": "2e1c91d8f5d01006",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "42d60f923f96f2ac",
+        "type": "debug",
+        "z": "2e1c91d8f5d01006",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "2fbdde99d59d1a38",
+        "type": "debug",
+        "z": "2e1c91d8f5d01006",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ee3fa3c6654fbe35",
+        "type": "debug",
+        "z": "2e1c91d8f5d01006",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a6520e6f0fd624d6",
+        "type": "function",
+        "z": "2e1c91d8f5d01006",
+        "name": "function 1",
+        "func": "msg.params ={\n    \"sessionId\": msg.payload.chatId\n}\nmsg.payload = msg.payload.content;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 280,
+        "wires": [
+            [
+                "0d0784e8153bbe5d",
+                "828a995145704bd2"
+            ]
+        ]
+    },
+    {
+        "id": "2f82bedadfb79cb5",
+        "type": "function",
+        "z": "2e1c91d8f5d01006",
+        "name": "function 2",
+        "func": "msg.payload = {\n    \"chatId\": msg.params.sessionId ,\n    \"type\": \"voice\",\n    \"content\": msg.payload\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 280,
+        "wires": [
+            [
+                "a1e89d4d1e3190d5",
+                "2fbdde99d59d1a38"
+            ]
+        ]
+    },
+    {
+        "id": "828a995145704bd2",
+        "type": "watson-text-to-speech",
+        "z": "2e1c91d8f5d01006",
+        "name": "",
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "pt-BR_IsabelaV3Voice",
+        "voicehidden": "",
+        "format": "audio/wav",
+        "password": "",
+        "apikey": "cqcW7ijarPVwNt1siXuORw6c-qa3J7BkuQ3uijmVN8A3",
+        "payload-response": true,
+        "service-endpoint": "https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/f2e51b34-ef41-48e5-beb8-c3cf1d1332c9",
+        "x": 500,
+        "y": 280,
+        "wires": [
+            [
+                "2f82bedadfb79cb5"
+            ]
+        ]
+    },
+    {
+        "id": "b48b41a9b16882e4",
+        "type": "telegram bot",
+        "botname": "Vini_FIAP_Bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    }
+]
